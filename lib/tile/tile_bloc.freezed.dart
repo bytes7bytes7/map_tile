@@ -646,6 +646,8 @@ mixin _$TileState {
   double? get latitude => throw _privateConstructorUsedError;
   double? get longitude => throw _privateConstructorUsedError;
   int? get zoom => throw _privateConstructorUsedError;
+  int? get x => throw _privateConstructorUsedError;
+  int? get y => throw _privateConstructorUsedError;
   String? get tileUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -665,6 +667,8 @@ abstract class $TileStateCopyWith<$Res> {
       double? latitude,
       double? longitude,
       int? zoom,
+      int? x,
+      int? y,
       String? tileUrl});
 }
 
@@ -687,6 +691,8 @@ class _$TileStateCopyWithImpl<$Res, $Val extends TileState>
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? zoom = freezed,
+    Object? x = freezed,
+    Object? y = freezed,
     Object? tileUrl = freezed,
   }) {
     return _then(_value.copyWith(
@@ -714,6 +720,14 @@ class _$TileStateCopyWithImpl<$Res, $Val extends TileState>
           ? _value.zoom
           : zoom // ignore: cast_nullable_to_non_nullable
               as int?,
+      x: freezed == x
+          ? _value.x
+          : x // ignore: cast_nullable_to_non_nullable
+              as int?,
+      y: freezed == y
+          ? _value.y
+          : y // ignore: cast_nullable_to_non_nullable
+              as int?,
       tileUrl: freezed == tileUrl
           ? _value.tileUrl
           : tileUrl // ignore: cast_nullable_to_non_nullable
@@ -736,6 +750,8 @@ abstract class _$$_TileStateCopyWith<$Res> implements $TileStateCopyWith<$Res> {
       double? latitude,
       double? longitude,
       int? zoom,
+      int? x,
+      int? y,
       String? tileUrl});
 }
 
@@ -756,6 +772,8 @@ class __$$_TileStateCopyWithImpl<$Res>
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? zoom = freezed,
+    Object? x = freezed,
+    Object? y = freezed,
     Object? tileUrl = freezed,
   }) {
     return _then(_$_TileState(
@@ -783,6 +801,14 @@ class __$$_TileStateCopyWithImpl<$Res>
           ? _value.zoom
           : zoom // ignore: cast_nullable_to_non_nullable
               as int?,
+      x: freezed == x
+          ? _value.x
+          : x // ignore: cast_nullable_to_non_nullable
+              as int?,
+      y: freezed == y
+          ? _value.y
+          : y // ignore: cast_nullable_to_non_nullable
+              as int?,
       tileUrl: freezed == tileUrl
           ? _value.tileUrl
           : tileUrl // ignore: cast_nullable_to_non_nullable
@@ -801,6 +827,8 @@ class _$_TileState extends _TileState {
       this.latitude,
       this.longitude,
       this.zoom,
+      this.x,
+      this.y,
       this.tileUrl})
       : super._();
 
@@ -817,11 +845,15 @@ class _$_TileState extends _TileState {
   @override
   final int? zoom;
   @override
+  final int? x;
+  @override
+  final int? y;
+  @override
   final String? tileUrl;
 
   @override
   String toString() {
-    return 'TileState(latitudeError: $latitudeError, longitudeError: $longitudeError, zoomError: $zoomError, latitude: $latitude, longitude: $longitude, zoom: $zoom, tileUrl: $tileUrl)';
+    return 'TileState(latitudeError: $latitudeError, longitudeError: $longitudeError, zoomError: $zoomError, latitude: $latitude, longitude: $longitude, zoom: $zoom, x: $x, y: $y, tileUrl: $tileUrl)';
   }
 
   @override
@@ -840,12 +872,14 @@ class _$_TileState extends _TileState {
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
             (identical(other.zoom, zoom) || other.zoom == zoom) &&
+            (identical(other.x, x) || other.x == x) &&
+            (identical(other.y, y) || other.y == y) &&
             (identical(other.tileUrl, tileUrl) || other.tileUrl == tileUrl));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, latitudeError, longitudeError,
-      zoomError, latitude, longitude, zoom, tileUrl);
+      zoomError, latitude, longitude, zoom, x, y, tileUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -862,6 +896,8 @@ abstract class _TileState extends TileState {
       final double? latitude,
       final double? longitude,
       final int? zoom,
+      final int? x,
+      final int? y,
       final String? tileUrl}) = _$_TileState;
   const _TileState._() : super._();
 
@@ -877,6 +913,10 @@ abstract class _TileState extends TileState {
   double? get longitude;
   @override
   int? get zoom;
+  @override
+  int? get x;
+  @override
+  int? get y;
   @override
   String? get tileUrl;
   @override

@@ -9,6 +9,8 @@ class TileState with _$TileState {
     double? latitude,
     double? longitude,
     int? zoom,
+    int? x,
+    int? y,
     String? tileUrl,
   }) = _TileState;
 

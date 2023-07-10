@@ -29,7 +29,10 @@ class InputScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => TileBloc(const ParkingTileCalculator()),
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text('Map Tile'),
+        ),
         body: const _Body(),
       ),
     );
@@ -89,10 +92,14 @@ class _Body extends StatelessWidget {
                 height: 40,
               ),
               const Text(
-                'Плитка',
+                'Tile',
                 style: TextStyle(
                   fontSize: 24,
                 ),
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                'x: ${state.x}, y: ${state.y}',
                 textAlign: TextAlign.center,
               ),
               SizedBox(
@@ -112,7 +119,7 @@ class _Body extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
                           Icon(Icons.error),
-                          Text('Плитка не найдена'),
+                          Text('No tile found'),
                         ],
                       );
                     },

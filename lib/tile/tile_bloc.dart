@@ -145,6 +145,8 @@ class TileBloc extends Bloc<TileEvent, TileState> {
 
     emit(
       state.copyWith(
+        x: result.x,
+        y: result.y,
         tileUrl: url,
       ),
     );
