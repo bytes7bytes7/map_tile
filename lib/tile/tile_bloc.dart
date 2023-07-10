@@ -9,6 +9,11 @@ part 'tile_state.dart';
 
 part 'tile_bloc.freezed.dart';
 
+const _minLat = -85.05112878;
+const _maxLat = 85.05112878;
+const _minLon = -180;
+const _maxLon = 180;
+
 class TileBloc extends Bloc<TileEvent, TileState> {
   TileBloc(
     this._calculator,
@@ -39,7 +44,23 @@ class TileBloc extends Bloc<TileEvent, TileState> {
     if (value == null) {
       return emit(
         state.copyWith(
-          latitudeError: 'Невалидное значение',
+          latitudeError: 'Invalid value',
+        ),
+      );
+    }
+
+    if (value < _minLat) {
+      return emit(
+        state.copyWith(
+          latitudeError: 'Min is $_minLat',
+        ),
+      );
+    }
+
+    if (value > _maxLat) {
+      return emit(
+        state.copyWith(
+          latitudeError: 'Max is $_maxLat',
         ),
       );
     }
@@ -70,7 +91,23 @@ class TileBloc extends Bloc<TileEvent, TileState> {
     if (value == null) {
       return emit(
         state.copyWith(
-          longitudeError: 'Невалидное значение',
+          longitudeError: 'Invalid value',
+        ),
+      );
+    }
+
+    if (value < _minLon) {
+      return emit(
+        state.copyWith(
+          longitudeError: 'Min is $_minLon',
+        ),
+      );
+    }
+
+    if (value > _maxLon) {
+      return emit(
+        state.copyWith(
+          longitudeError: 'Max is $_maxLon',
         ),
       );
     }
@@ -101,7 +138,7 @@ class TileBloc extends Bloc<TileEvent, TileState> {
     if (value == null) {
       return emit(
         state.copyWith(
-          zoomError: 'Невалидное значение',
+          zoomError: 'Invalid value',
         ),
       );
     }

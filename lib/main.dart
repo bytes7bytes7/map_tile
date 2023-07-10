@@ -58,7 +58,7 @@ class _Body extends StatelessWidget {
               onChanged: (v) => bloc.add(TileEvent.setLatitude(v)),
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                hintText: 'Latitude',
+                labelText: 'Latitude',
                 errorText: state.latitudeError,
               ),
             ),
@@ -66,7 +66,7 @@ class _Body extends StatelessWidget {
               onChanged: (v) => bloc.add(TileEvent.setLongitude(v)),
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                hintText: 'Longitude',
+                labelText: 'Longitude',
                 errorText: state.longitudeError,
               ),
             ),
@@ -74,7 +74,7 @@ class _Body extends StatelessWidget {
               onChanged: (v) => bloc.add(TileEvent.setZoom(v)),
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                hintText: 'Zoom',
+                labelText: 'Zoom',
                 errorText: state.zoomError,
               ),
             ),
