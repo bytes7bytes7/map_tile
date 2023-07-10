@@ -40,7 +40,8 @@ class InputScreen extends StatelessWidget {
           title: const Text('Map Tile'),
         ),
         body: SafeArea(
-          child: Center(
+          child: Align(
+            alignment: Alignment.topCenter,
             child: SizedBox(
               width: min(size.width, _maxWidth),
               child: const _Body(),
