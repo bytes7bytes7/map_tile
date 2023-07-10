@@ -1,9 +1,13 @@
+import 'dart:math';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'parking_tile_calculator.dart';
 import 'tile/tile_bloc.dart';
+
+const _maxWidth = 600.0;
 
 void main() {
   runApp(const MyApp());
@@ -26,6 +30,8 @@ class InputScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return BlocProvider(
       create: (context) => TileBloc(const ParkingTileCalculator()),
       child: Scaffold(
@@ -33,7 +39,14 @@ class InputScreen extends StatelessWidget {
           centerTitle: true,
           title: const Text('Map Tile'),
         ),
-        body: const _Body(),
+        body: SafeArea(
+          child: Center(
+            child: SizedBox(
+              width: min(size.width, _maxWidth),
+              child: const _Body(),
+            ),
+          ),
+        ),
       ),
     );
   }
