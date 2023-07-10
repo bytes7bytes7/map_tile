@@ -20,15 +20,15 @@ class TileState with _$TileState {
       return false;
     }
 
-    if (latitudeError?.isNotEmpty != true) {
+    if (latitudeError != null) {
       return false;
     }
 
-    if (longitudeError?.isNotEmpty != true) {
+    if (longitudeError != null) {
       return false;
     }
 
-    if (zoomError?.isNotEmpty != true) {
+    if (zoomError != null) {
       return false;
     }
 
@@ -44,6 +44,6 @@ class TileState with _$TileState {
       return false;
     }
 
-    return false;
+    return true;
   }
 }

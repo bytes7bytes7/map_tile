@@ -45,9 +45,11 @@ class _Body extends StatelessWidget {
       builder: (context, state) {
         return ListView(
           shrinkWrap: true,
+          padding: const EdgeInsets.all(20),
           children: [
             TextField(
               onChanged: (v) => bloc.add(TileEvent.setLatitude(v)),
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 hintText: 'Latitude',
                 errorText: state.latitudeError,
@@ -55,6 +57,7 @@ class _Body extends StatelessWidget {
             ),
             TextField(
               onChanged: (v) => bloc.add(TileEvent.setLongitude(v)),
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 hintText: 'Longitude',
                 errorText: state.longitudeError,
@@ -62,10 +65,17 @@ class _Body extends StatelessWidget {
             ),
             TextField(
               onChanged: (v) => bloc.add(TileEvent.setZoom(v)),
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 hintText: 'Zoom',
                 errorText: state.zoomError,
               ),
+            ),
+            ElevatedButton(
+              onPressed: state.canSubmit
+                  ? () => bloc.add(const TileEvent.submit())
+                  : null,
+              child: const Text('Show Tile'),
             ),
           ],
         );

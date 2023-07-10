@@ -28,7 +28,7 @@ class TileBloc extends Bloc<TileEvent, TileState> {
       );
     }
 
-    final value = double.tryParse(event.latitude);
+    final value = double.tryParse(event.latitude.replaceAll(',', '.'));
 
     if (value == null) {
       return emit(
@@ -59,7 +59,7 @@ class TileBloc extends Bloc<TileEvent, TileState> {
       );
     }
 
-    final value = double.tryParse(event.longitude);
+    final value = double.tryParse(event.longitude.replaceAll(',', '.'));
 
     if (value == null) {
       return emit(
