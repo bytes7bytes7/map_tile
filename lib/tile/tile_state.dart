@@ -5,9 +5,9 @@ class TileState with _$TileState {
   const factory TileState({
     @Default(false) bool isLoading,
     @Default('') String error,
-    @Default('') String latitudeError,
-    @Default('') String longitudeError,
-    @Default('') String zoomError,
+    String? latitudeError,
+    String? longitudeError,
+    String? zoomError,
     double? latitude,
     double? longitude,
     int? zoom,
@@ -20,15 +20,15 @@ class TileState with _$TileState {
       return false;
     }
 
-    if (latitudeError.isNotEmpty) {
+    if (latitudeError?.isNotEmpty != true) {
       return false;
     }
 
-    if (longitudeError.isNotEmpty) {
+    if (longitudeError?.isNotEmpty != true) {
       return false;
     }
 
-    if (zoomError.isNotEmpty) {
+    if (zoomError?.isNotEmpty != true) {
       return false;
     }
 

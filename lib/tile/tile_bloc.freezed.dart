@@ -642,9 +642,9 @@ abstract class _SubmitEvent implements TileEvent {
 mixin _$TileState {
   bool get isLoading => throw _privateConstructorUsedError;
   String get error => throw _privateConstructorUsedError;
-  String get latitudeError => throw _privateConstructorUsedError;
-  String get longitudeError => throw _privateConstructorUsedError;
-  String get zoomError => throw _privateConstructorUsedError;
+  String? get latitudeError => throw _privateConstructorUsedError;
+  String? get longitudeError => throw _privateConstructorUsedError;
+  String? get zoomError => throw _privateConstructorUsedError;
   double? get latitude => throw _privateConstructorUsedError;
   double? get longitude => throw _privateConstructorUsedError;
   int? get zoom => throw _privateConstructorUsedError;
@@ -662,9 +662,9 @@ abstract class $TileStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       String error,
-      String latitudeError,
-      String longitudeError,
-      String zoomError,
+      String? latitudeError,
+      String? longitudeError,
+      String? zoomError,
       double? latitude,
       double? longitude,
       int? zoom});
@@ -685,9 +685,9 @@ class _$TileStateCopyWithImpl<$Res, $Val extends TileState>
   $Res call({
     Object? isLoading = null,
     Object? error = null,
-    Object? latitudeError = null,
-    Object? longitudeError = null,
-    Object? zoomError = null,
+    Object? latitudeError = freezed,
+    Object? longitudeError = freezed,
+    Object? zoomError = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? zoom = freezed,
@@ -701,18 +701,18 @@ class _$TileStateCopyWithImpl<$Res, $Val extends TileState>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String,
-      latitudeError: null == latitudeError
+      latitudeError: freezed == latitudeError
           ? _value.latitudeError
           : latitudeError // ignore: cast_nullable_to_non_nullable
-              as String,
-      longitudeError: null == longitudeError
+              as String?,
+      longitudeError: freezed == longitudeError
           ? _value.longitudeError
           : longitudeError // ignore: cast_nullable_to_non_nullable
-              as String,
-      zoomError: null == zoomError
+              as String?,
+      zoomError: freezed == zoomError
           ? _value.zoomError
           : zoomError // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -739,9 +739,9 @@ abstract class _$$_TileStateCopyWith<$Res> implements $TileStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       String error,
-      String latitudeError,
-      String longitudeError,
-      String zoomError,
+      String? latitudeError,
+      String? longitudeError,
+      String? zoomError,
       double? latitude,
       double? longitude,
       int? zoom});
@@ -760,9 +760,9 @@ class __$$_TileStateCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? error = null,
-    Object? latitudeError = null,
-    Object? longitudeError = null,
-    Object? zoomError = null,
+    Object? latitudeError = freezed,
+    Object? longitudeError = freezed,
+    Object? zoomError = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? zoom = freezed,
@@ -776,18 +776,18 @@ class __$$_TileStateCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String,
-      latitudeError: null == latitudeError
+      latitudeError: freezed == latitudeError
           ? _value.latitudeError
           : latitudeError // ignore: cast_nullable_to_non_nullable
-              as String,
-      longitudeError: null == longitudeError
+              as String?,
+      longitudeError: freezed == longitudeError
           ? _value.longitudeError
           : longitudeError // ignore: cast_nullable_to_non_nullable
-              as String,
-      zoomError: null == zoomError
+              as String?,
+      zoomError: freezed == zoomError
           ? _value.zoomError
           : zoomError // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -810,9 +810,9 @@ class _$_TileState extends _TileState {
   const _$_TileState(
       {this.isLoading = false,
       this.error = '',
-      this.latitudeError = '',
-      this.longitudeError = '',
-      this.zoomError = '',
+      this.latitudeError,
+      this.longitudeError,
+      this.zoomError,
       this.latitude,
       this.longitude,
       this.zoom})
@@ -825,14 +825,11 @@ class _$_TileState extends _TileState {
   @JsonKey()
   final String error;
   @override
-  @JsonKey()
-  final String latitudeError;
+  final String? latitudeError;
   @override
-  @JsonKey()
-  final String longitudeError;
+  final String? longitudeError;
   @override
-  @JsonKey()
-  final String zoomError;
+  final String? zoomError;
   @override
   final double? latitude;
   @override
@@ -881,9 +878,9 @@ abstract class _TileState extends TileState {
   const factory _TileState(
       {final bool isLoading,
       final String error,
-      final String latitudeError,
-      final String longitudeError,
-      final String zoomError,
+      final String? latitudeError,
+      final String? longitudeError,
+      final String? zoomError,
       final double? latitude,
       final double? longitude,
       final int? zoom}) = _$_TileState;
@@ -894,11 +891,11 @@ abstract class _TileState extends TileState {
   @override
   String get error;
   @override
-  String get latitudeError;
+  String? get latitudeError;
   @override
-  String get longitudeError;
+  String? get longitudeError;
   @override
-  String get zoomError;
+  String? get zoomError;
   @override
   double? get latitude;
   @override

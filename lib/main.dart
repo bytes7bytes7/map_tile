@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'tile/tile_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,28 +24,52 @@ class InputScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: ListView(
-        shrinkWrap: true,
-        children: const [
-          TextField(
-            decoration: InputDecoration(
-              hintText: 'Latitude',
-            ),
-          ),
-          TextField(
-            decoration: InputDecoration(
-              hintText: 'Longitude',
-            ),
-          ),
-          TextField(
-            decoration: InputDecoration(
-              hintText: 'Zoom',
-            ),
-          ),
-        ],
+    return BlocProvider(
+      create: (context) => TileBloc(),
+      child: Scaffold(
+        appBar: AppBar(),
+        body: const _Body(),
       ),
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  const _Body();
+
+  @override
+  Widget build(BuildContext context) {
+    final bloc = context.read<TileBloc>();
+
+    return BlocBuilder<TileBloc, TileState>(
+      builder: (context, state) {
+        return ListView(
+          shrinkWrap: true,
+          children: [
+            TextField(
+              onChanged: (v) => bloc.add(TileEvent.setLatitude(v)),
+              decoration: InputDecoration(
+                hintText: 'Latitude',
+                errorText: state.latitudeError,
+              ),
+            ),
+            TextField(
+              onChanged: (v) => bloc.add(TileEvent.setLongitude(v)),
+              decoration: InputDecoration(
+                hintText: 'Longitude',
+                errorText: state.longitudeError,
+              ),
+            ),
+            TextField(
+              onChanged: (v) => bloc.add(TileEvent.setZoom(v)),
+              decoration: InputDecoration(
+                hintText: 'Zoom',
+                errorText: state.zoomError,
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

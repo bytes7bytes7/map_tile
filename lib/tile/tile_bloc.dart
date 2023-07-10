@@ -22,7 +22,7 @@ class TileBloc extends Bloc<TileEvent, TileState> {
     if (event.latitude.isEmpty) {
       return emit(
         state.copyWith(
-          latitudeError: '',
+          latitudeError: null,
           latitude: null,
         ),
       );
@@ -40,7 +40,7 @@ class TileBloc extends Bloc<TileEvent, TileState> {
 
     emit(
       state.copyWith(
-        latitudeError: '',
+        latitudeError: null,
         latitude: value,
       ),
     );
@@ -53,7 +53,7 @@ class TileBloc extends Bloc<TileEvent, TileState> {
     if (event.longitude.isEmpty) {
       return emit(
         state.copyWith(
-          longitudeError: '',
+          longitudeError: null,
           longitude: null,
         ),
       );
@@ -71,7 +71,7 @@ class TileBloc extends Bloc<TileEvent, TileState> {
 
     emit(
       state.copyWith(
-        longitudeError: '',
+        longitudeError: null,
         longitude: value,
       ),
     );
@@ -84,7 +84,7 @@ class TileBloc extends Bloc<TileEvent, TileState> {
     if (event.zoom.isEmpty) {
       return emit(
         state.copyWith(
-          zoomError: '',
+          zoomError: null,
           zoom: null,
         ),
       );
@@ -102,7 +102,7 @@ class TileBloc extends Bloc<TileEvent, TileState> {
 
     emit(
       state.copyWith(
-        zoomError: '',
+        zoomError: null,
         zoom: value,
       ),
     );
