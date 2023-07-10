@@ -3,23 +3,18 @@ part of 'tile_bloc.dart';
 @freezed
 class TileState with _$TileState {
   const factory TileState({
-    @Default(false) bool isLoading,
-    @Default('') String error,
     String? latitudeError,
     String? longitudeError,
     String? zoomError,
     double? latitude,
     double? longitude,
     int? zoom,
+    String? tileUrl,
   }) = _TileState;
 
   const TileState._();
 
   bool get canSubmit {
-    if (isLoading) {
-      return false;
-    }
-
     if (latitudeError != null) {
       return false;
     }

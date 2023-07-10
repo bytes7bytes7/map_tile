@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'parking_tile_calculator.dart';
 import 'tile/tile_bloc.dart';
 
 void main() {
@@ -25,7 +27,7 @@ class InputScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TileBloc(),
+      create: (context) => TileBloc(const ParkingTileCalculator()),
       child: Scaffold(
         appBar: AppBar(),
         body: const _Body(),
@@ -43,6 +45,8 @@ class _Body extends StatelessWidget {
 
     return BlocBuilder<TileBloc, TileState>(
       builder: (context, state) {
+        final url = state.tileUrl;
+
         return ListView(
           shrinkWrap: true,
           padding: const EdgeInsets.all(20),
@@ -71,12 +75,51 @@ class _Body extends StatelessWidget {
                 errorText: state.zoomError,
               ),
             ),
+            const SizedBox(
+              height: 40,
+            ),
             ElevatedButton(
               onPressed: state.canSubmit
                   ? () => bloc.add(const TileEvent.submit())
                   : null,
               child: const Text('Show Tile'),
             ),
+            if (url != null) ...[
+              const SizedBox(
+                height: 40,
+              ),
+              const Text(
+                'Плитка',
+                style: TextStyle(
+                  fontSize: 24,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: 300,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 2,
+                    ),
+                  ),
+                  child: CachedNetworkImage(
+                    imageUrl: url,
+                    fit: BoxFit.fitHeight,
+                    errorWidget: (context, url, error) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.error),
+                          Text('Плитка не найдена'),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ],
           ],
         );
       },

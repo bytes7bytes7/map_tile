@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../parking_tile_calculator.dart';
+
 part 'tile_event.dart';
 
 part 'tile_state.dart';
@@ -8,12 +10,16 @@ part 'tile_state.dart';
 part 'tile_bloc.freezed.dart';
 
 class TileBloc extends Bloc<TileEvent, TileState> {
-  TileBloc() : super(const TileState()) {
+  TileBloc(
+    this._calculator,
+  ) : super(const TileState()) {
     on<_SetLatitudeEvent>(_setLatitude);
     on<_SetLongitudeEvent>(_setLongitude);
     on<_SetZoomEvent>(_setZoom);
     on<_SubmitEvent>(_submit);
   }
+
+  final ParkingTileCalculator _calculator;
 
   void _setLatitude(
     _SetLatitudeEvent event,
@@ -115,5 +121,32 @@ class TileBloc extends Bloc<TileEvent, TileState> {
     if (!state.canSubmit) {
       return;
     }
+
+    final latitude = state.latitude;
+    final longitude = state.longitude;
+    final zoom = state.zoom;
+
+    if (latitude == null || longitude == null || zoom == null) {
+      return;
+    }
+
+    final result = _calculator.yandexCalculate(
+      latitude: latitude,
+      longitude: longitude,
+      zoom: zoom,
+    );
+
+    final url = 'https://core-carparks-renderer-lots.maps.yandex.net'
+        '/maps-rdr-carparks/tiles?l=carparks&'
+        'x=${result.x}'
+        '&y=${result.y}'
+        '&z=${result.z}'
+        '&scale=1&lang=ru_RU';
+
+    emit(
+      state.copyWith(
+        tileUrl: url,
+      ),
+    );
   }
 }

@@ -640,14 +640,13 @@ abstract class _SubmitEvent implements TileEvent {
 
 /// @nodoc
 mixin _$TileState {
-  bool get isLoading => throw _privateConstructorUsedError;
-  String get error => throw _privateConstructorUsedError;
   String? get latitudeError => throw _privateConstructorUsedError;
   String? get longitudeError => throw _privateConstructorUsedError;
   String? get zoomError => throw _privateConstructorUsedError;
   double? get latitude => throw _privateConstructorUsedError;
   double? get longitude => throw _privateConstructorUsedError;
   int? get zoom => throw _privateConstructorUsedError;
+  String? get tileUrl => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TileStateCopyWith<TileState> get copyWith =>
@@ -660,14 +659,13 @@ abstract class $TileStateCopyWith<$Res> {
       _$TileStateCopyWithImpl<$Res, TileState>;
   @useResult
   $Res call(
-      {bool isLoading,
-      String error,
-      String? latitudeError,
+      {String? latitudeError,
       String? longitudeError,
       String? zoomError,
       double? latitude,
       double? longitude,
-      int? zoom});
+      int? zoom,
+      String? tileUrl});
 }
 
 /// @nodoc
@@ -683,24 +681,15 @@ class _$TileStateCopyWithImpl<$Res, $Val extends TileState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoading = null,
-    Object? error = null,
     Object? latitudeError = freezed,
     Object? longitudeError = freezed,
     Object? zoomError = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? zoom = freezed,
+    Object? tileUrl = freezed,
   }) {
     return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      error: null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String,
       latitudeError: freezed == latitudeError
           ? _value.latitudeError
           : latitudeError // ignore: cast_nullable_to_non_nullable
@@ -725,6 +714,10 @@ class _$TileStateCopyWithImpl<$Res, $Val extends TileState>
           ? _value.zoom
           : zoom // ignore: cast_nullable_to_non_nullable
               as int?,
+      tileUrl: freezed == tileUrl
+          ? _value.tileUrl
+          : tileUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -737,14 +730,13 @@ abstract class _$$_TileStateCopyWith<$Res> implements $TileStateCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {bool isLoading,
-      String error,
-      String? latitudeError,
+      {String? latitudeError,
       String? longitudeError,
       String? zoomError,
       double? latitude,
       double? longitude,
-      int? zoom});
+      int? zoom,
+      String? tileUrl});
 }
 
 /// @nodoc
@@ -758,24 +750,15 @@ class __$$_TileStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoading = null,
-    Object? error = null,
     Object? latitudeError = freezed,
     Object? longitudeError = freezed,
     Object? zoomError = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? zoom = freezed,
+    Object? tileUrl = freezed,
   }) {
     return _then(_$_TileState(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      error: null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String,
       latitudeError: freezed == latitudeError
           ? _value.latitudeError
           : latitudeError // ignore: cast_nullable_to_non_nullable
@@ -800,6 +783,10 @@ class __$$_TileStateCopyWithImpl<$Res>
           ? _value.zoom
           : zoom // ignore: cast_nullable_to_non_nullable
               as int?,
+      tileUrl: freezed == tileUrl
+          ? _value.tileUrl
+          : tileUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -808,22 +795,15 @@ class __$$_TileStateCopyWithImpl<$Res>
 
 class _$_TileState extends _TileState {
   const _$_TileState(
-      {this.isLoading = false,
-      this.error = '',
-      this.latitudeError,
+      {this.latitudeError,
       this.longitudeError,
       this.zoomError,
       this.latitude,
       this.longitude,
-      this.zoom})
+      this.zoom,
+      this.tileUrl})
       : super._();
 
-  @override
-  @JsonKey()
-  final bool isLoading;
-  @override
-  @JsonKey()
-  final String error;
   @override
   final String? latitudeError;
   @override
@@ -836,10 +816,12 @@ class _$_TileState extends _TileState {
   final double? longitude;
   @override
   final int? zoom;
+  @override
+  final String? tileUrl;
 
   @override
   String toString() {
-    return 'TileState(isLoading: $isLoading, error: $error, latitudeError: $latitudeError, longitudeError: $longitudeError, zoomError: $zoomError, latitude: $latitude, longitude: $longitude, zoom: $zoom)';
+    return 'TileState(latitudeError: $latitudeError, longitudeError: $longitudeError, zoomError: $zoomError, latitude: $latitude, longitude: $longitude, zoom: $zoom, tileUrl: $tileUrl)';
   }
 
   @override
@@ -847,9 +829,6 @@ class _$_TileState extends _TileState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TileState &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
-            (identical(other.error, error) || other.error == error) &&
             (identical(other.latitudeError, latitudeError) ||
                 other.latitudeError == latitudeError) &&
             (identical(other.longitudeError, longitudeError) ||
@@ -860,12 +839,13 @@ class _$_TileState extends _TileState {
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
-            (identical(other.zoom, zoom) || other.zoom == zoom));
+            (identical(other.zoom, zoom) || other.zoom == zoom) &&
+            (identical(other.tileUrl, tileUrl) || other.tileUrl == tileUrl));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, error, latitudeError,
-      longitudeError, zoomError, latitude, longitude, zoom);
+  int get hashCode => Object.hash(runtimeType, latitudeError, longitudeError,
+      zoomError, latitude, longitude, zoom, tileUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -876,20 +856,15 @@ class _$_TileState extends _TileState {
 
 abstract class _TileState extends TileState {
   const factory _TileState(
-      {final bool isLoading,
-      final String error,
-      final String? latitudeError,
+      {final String? latitudeError,
       final String? longitudeError,
       final String? zoomError,
       final double? latitude,
       final double? longitude,
-      final int? zoom}) = _$_TileState;
+      final int? zoom,
+      final String? tileUrl}) = _$_TileState;
   const _TileState._() : super._();
 
-  @override
-  bool get isLoading;
-  @override
-  String get error;
   @override
   String? get latitudeError;
   @override
@@ -902,6 +877,8 @@ abstract class _TileState extends TileState {
   double? get longitude;
   @override
   int? get zoom;
+  @override
+  String? get tileUrl;
   @override
   @JsonKey(ignore: true)
   _$$_TileStateCopyWith<_$_TileState> get copyWith =>
